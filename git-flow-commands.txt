@@ -1,0 +1,33 @@
+-- Create Feature Branch (from dev)--
+    git checkout -b feature/{feature.name}
+
+-- Finishing Feature Branch --
+    git checkout dev
+    git merge --no-ff feature/{feature.name}
+    git branch -d feature/{feature.name}
+
+-- Creating release (from dev)--
+    git checkout -b release/{version}
+    git checkout master
+    git merge --no-ff release/{version}
+    git tag -a {version}
+    git checkout dev
+    git merge --no-ff release/{version}
+    git branch -d release/{version}
+
+-- Pushing branches --
+    git push origin master
+    git push origin dev
+    git push origin --tags
+
+-- Creating hotfix (from master) --
+    same as release
+
+-----------------------------------
+
+Scenarios:
+    1.) Deleting HotDog.cs (feature)
+    2.) Writing Descriptions (feature)
+    3.) Make release. (release)
+    4.) Change to HashSet (hotfix)
+    5.) Update Mango color, init color in constructor (merge conflicts)
